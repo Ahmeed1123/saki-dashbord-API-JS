@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link rel="stylesheet" href="assits/css/style.css">
+        <!-- bootstrab-link -->
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js.map"></script>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <script src="../node_modules/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="modal fade" id="Login-model" tabindex="-1" role="dialog" aria-bs-labelledby="exampleModalLabel" aria-bs-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-bs-label="Close">
+                <span aria-bs-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Phone Numbar:</label>
+                  <input type="text" class="form-control" id="Phone-Numbar-input" value="533363857">
+                </div>
+                <!-- <div class="form-group">
+                  <label for="message-text" class="col-form-label">password:</label>
+                  <input type="password" class="form-control" id="password-input">
+                </div>  -->
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" onclick="loginbutclick()">Login</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+
+      <div class="modal fade" id="verification-code-modal" tabindex="-1" role="dialog" aria-bs-labelledby="exampleModalLabel" aria-bs-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Verification</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-bs-label="Close">
+                <span aria-bs-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">verification code:</label>
+                  <input type="text" class="form-control" id="Phone-Verification-code-input" value="1111">
+                </div>
+                <!-- <div class="form-group">
+                  <label for="message-text" class="col-form-label">password:</label>
+                  <input type="password" class="form-control" id="password-input">
+                </div>  -->
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="verification-btn">Login</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="modalMarket" tabindex="-1" role="dialog" aria-bs-labelledby="exampleModalLabel" aria-bs-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Verification</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-bs-label="Close">
+                <span aria-bs-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">verification code:</label>
+                  <input type="text" class="form-control" id="Phone-Verification-code-input" value="1111">
+                </div>
+                <input type="hidden" id="valueId">
+                <!-- <div class="form-group">
+                  <label for="message-text" class="col-form-label">password:</label>
+                  <input type="password" class="form-control" id="password-input">
+                </div>  -->
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="verification-btn">Login</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="profileDthilsSvg" tabindex="-1" role="dialog" aria-bs-labelledby="exampleModalLabel" aria-bs-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-bs-label="Close">
+                <span aria-bs-hidden="true">&times;</span>
+              </button>
+            </div>
+              <div class="modal-body direction-rtl">
+              <form>
+                <div class="form-group">
+                    <div class="image w-100 text-center">
+                        <img src="https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png" alt="">
+                    </div>
+                  <label for="recipient-name" class="col-form-label">الاسم:</label>
+                  <input type="text" class="form-control" id="Name-Profile-input" value="">
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">رقم الجوال :</label>
+                  <input type="text" disabled required class="form-control" id="PhoneNumbarProfile">
+                </div> 
+                
+                  <div class="form-group">
+                    <label for="message-text" class="col-form-label"> البريد الإلكتروني :</label>
+                    <input type="email"  class="form-control" id="Emailprofile">
+                  </div> 
+                  <div class="form-group">
+                    <label for="message-text d-black" class="col-form-label">الحالة الإجتماعية</label>
+                    <div class="input-radio">
+                        <label for="message-text d-inline-block" class="col-form-label">أعزب</label>
+                        <input type="radio" name="materialProf" value="single"   id="materialProfileSin">
+                     </div>
+                     <div class="input-radio">
+                        <label for="message-text d-inline-block" class="col-form-label">أرمل</label>
+                        <input type="radio" name="materialProf" value="widower"  id="materialProfileWid">
+                     </div>
+                     <div class="input-radio">
+                        <label for="message-text d-inline-block" class="col-form-label">مطلق</label>
+                        <input type="radio" name="materialProf"  value="divorced" id="materialProfileabs">
+                     </div>
+                     <div class="input-radio">
+                        <label for="message-text d-inline-block" class="col-form-label">متزوج</label>
+                        <input type="radio" name="materialProf" value="married"  id="materialProfilemar">
+                     </div>
+                  </div> 
+                  <div class="form-group">
+                    <label for="message-text" class="col-form-label"> الدخل الشهري :</label>
+                    <input type="number"  class="form-control" id="incomeS">
+                  </div> 
+                  <div class="form-group select">
+                    <label for="seal" class="col-form-label">مصدر الدخل</label>
+                       <select class="form-select" aria-bs-label="Default select example" id="slectItemS"> 
+                            <option id="ProfileFreeWork" value="free Work">عمل حر </option>
+                            <option id="ProfileJo"  value="job">وظيفة</option>
+                            <option id="ProfileOther" value="Other">أخرى</option>
+                      </select>
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="SaveProfile" >حفظ</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      
+      <div id="loaderJs">
+        <div class="lds-ripple">
+            <div></div><div></div>
+        </div>
+    </div>
+    <div id="liveAlertPlaceholder" class="show fade"></div>
+        
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-bs-controls="navbarNavDropdown" aria-bs-expanded="true" aria-bs-label="Toggle navigation" >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html">Home <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link active">profile</a>
+                </li>
+         
+                    <li class="nav-item "><a class="nav-link" href="AllPost.html">My requests</a></li>
+                    <li class="nav-item "><a class="nav-link" href="Portfolio.html">Digital wallet</a></li>
+          
+                
+          
+              </ul>
+              <div class="buttons">
+                <button id="button-login" class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#Login-model">Login</button>
+                <button type="button"id="button-regster" data-bs-toggle="modal" data-bs-target="#Regster-model" class="btn btn-outline-danger">regster</button>
+           </div>
+    
+    
+           <!-- logout button -->
+           <div class="buttons log-out" id="logout-div">
+            <span id="profile-sign-in"> 
+              <img id="profile-image" src="https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png" alt="">
+              <b id="userName">@yarob</b>
+            </span>
+           
+            <button onclick="Logout()" type="button"id="logout" class="btn btn-outline-danger">logout</button>
+    
+          </div>
+            </div>
+          </nav>
+          <div class="all-item-profile ">
+                <div class="item-profile  d-flex position-relative">
+                    <div class="item-profile-image ">
+                        <img src="https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png" alt="">
+                    </div>
+                    <div class="text-date">
+                        <p class="name" id="NameProfile"></p>
+                        <p class="Numbar-identification">رقم الهوية : <span class="text-dark" id="numbarIdentification"></span></p>
+                    </div>
+                        <div class="profileDthils">
+                            <svg id="svgAlldithles" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="margin-right-sm svg-inline--fa fa-angle-left fa-lg">
+                                <path fill="currentColor" d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" class=""></path></svg>
+                    </div>
+                </div>
+          </div>
+
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="assits/js/main.js"></script>
+    <script src="assits/js/all.min.js"></script>
+    <script src="assits/js/profile.js"></script>
+    <script src="assits/js/js-bootstrab/bootstrap.min.js"></script>
+    </html>

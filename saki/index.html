@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link rel="stylesheet" href="assits/css/style.css">
+        <!-- bootstrab-link -->
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js.map"></script>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <script src="../node_modules/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="modal fade" id="Login-model" tabindex="-1" role="dialog" aria-bs-labelledby="exampleModalLabel" aria-bs-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-bs-label="Close">
+                <span aria-bs-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Phone Numbar:</label>
+                  <input type="text" class="form-control" id="Phone-Numbar-input" value="533363857">
+                </div>
+                <!-- <div class="form-group">
+                  <label for="message-text" class="col-form-label">password:</label>
+                  <input type="password" class="form-control" id="password-input">
+                </div>  -->
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" onclick="loginbutclick()">Login</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+
+      <div class="modal fade" id="verification-code-modal" tabindex="-1" role="dialog" aria-bs-labelledby="exampleModalLabel" aria-bs-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Verification</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-bs-label="Close">
+                <span aria-bs-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">verification code:</label>
+                  <input type="text" class="form-control" id="Phone-Verification-code-input" value="1111">
+                </div>
+                <!-- <div class="form-group">
+                  <label for="message-text" class="col-form-label">password:</label>
+                  <input type="password" class="form-control" id="password-input">
+                </div>  -->
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="verification-btn">Login</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="modalMarket" tabindex="-1" role="dialog" aria-bs-labelledby="exampleModalLabel" aria-bs-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+
+            <div class="modal-body">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-bs-label="Close">
+                    <span aria-bs-hidden="true">&times;</span>
+                </button>
+                <div class="markit-image">
+                    <img src="" id="imageMarketBack">
+                </div>
+                <p>يمكنك إختيار مبلغ القسيمة الشرائية من هنا حسب الرصيد المتاح في محفظتك</p>
+              <form>
+
+                <input type="hidden" id="valueId">
+                 <div class="form-group select">
+                  <label for="seal" class="col-form-label">مبلغ القسيمة</label>
+                     <select class="form-select" aria-bs-label="Default select example" id="slectItem">
+
+
+                     </select>
+                </div>
+              </form>
+                <div class="btn-div w-100 text-center">
+                     <button type="button" class="btn btn-primary" id="verificationBuy">إدفع</button>
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modalMarketTwo" tabindex="-1" role="dialog" aria-bs-labelledby="exampleModalLabel" aria-bs-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+
+            <div class="modal-body">
+
+                <div class="icon-chackeMarkeTwo">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill text-success d-inline" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                    </svg>
+                </div>
+                <h4 class="text-center mt-5 mb-3">شكراً,</h4>
+                <p class="mmb-2">تم إكتمال طلبك بنجاح </p>
+                <p id="titleSeal" class="text-primary"></p>
+
+                <div class="markit-image text-center mb-5">
+                  <img src="" id="modalMarketTwoBack">
+              </div>
+             
+              <div class="code-valdithen">
+                <div class="svg-copytext" id="copyTextButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6ZM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2Z"/>
+                    </svg>
+                </div>
+                <p>الكود: <span id="valdithenCode"></span></p>
+              </div>
+              <input type="hidden" id="valueId">
+
+              <div class="btn-div w-100 text-center">
+                <button onclick="closeReload()" type="button" class="btn btn-primary" data-bs-dismiss="modal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                 <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+               </svg>   رجوع   </button>
+           </div>
+            </div>
+                
+            
+               
+              
+              
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-bs-labelledby="exampleModalLabel" aria-bs-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+
+            <div class="modal-body">
+                <button type="button" class="close" data-bs-dismiss="modal" id="btnCloses" aria-bs-label="Close">
+                    <span aria-bs-hidden="true">&times;</span>
+                </button>
+                <input type="text" id="searchInput" placeholder="ابحث هنا...">
+                  <div class="all-posts-Elment-cleanode" id="ElmentCleanode">
+                            
+                  </div>
+
+
+
+                <div class="btn-div w-100 text-center">
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <!-- loader html -->
+<div id="loaderJs">
+    <div class="lds-ripple">
+        <div></div><div></div>
+    </div>
+</div>
+<div id="liveAlertPlaceholder" class="show fade"></div>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-bs-controls="navbarNavDropdown" aria-bs-expanded="true" aria-bs-label="Toggle navigation" >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link active" href="index.html">Home <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Profile.html">profile</a>
+            </li>
+            <li class="nav-item "><a class="nav-link" href="AllPost.html">My requests</a></li>
+            <li class="nav-item "><a class="nav-link" href="Portfolio.html">Digital wallet</a></li>
+      
+          </ul>
+          <div class="buttons">
+            <button id="button-login" class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#Login-model">Login</button>
+            <button type="button"id="button-regster" data-bs-toggle="modal" data-bs-target="#Regster-model" class="btn btn-outline-danger">regster</button>
+       </div>
+
+
+       <!-- logout button -->
+       <div class="buttons log-out" id="logout-div">
+        <span id="profile-sign-in"> 
+          <img id="profile-image" src="https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png" alt="">
+          <b id="userName">@yarob</b>
+        </span>
+       
+        <button onclick="Logout()" type="button"id="logout" class="btn btn-outline-danger">logout</button>
+
+      </div>
+        </div>
+      </nav>
+
+<header class="header" id="headPrice">
+  <p>إجمالي الرصيد</p>
+  <h3 id="PriceHaed"></h3>
+</header>
+  <div class="all-posts-all d-flex" id="allPostsAll">
+    <h6>محفظة المستلزمات والأثاث</h6>
+    <p class="d-flex my-auto">الكل <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+      <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+    </svg></p>
+  </div>
+<div class="all-posts" id="postsAll">
+
+
+
+  
+</div>
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<script src="assits/js/main.js"></script>
+<script src="assits/js/all.min.js"></script>
+<script src="assits/js/js-bootstrab/bootstrap.min.js"></script>
+<script src="assits/js/index.js"></script>
+</html>
