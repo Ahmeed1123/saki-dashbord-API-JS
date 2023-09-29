@@ -41,11 +41,10 @@ function reqosetDate() {
         }
         toggleLoader(false)
     }).catch((error) => {
+         toggleLoader(false)
         console.log(error)
         showScuse(`${error.message}`, "danger")
 
-    }).finally(() => {
-        toggleLoader(false)
     })
 }
 function detailsReqoset(post) {

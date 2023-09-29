@@ -77,11 +77,12 @@ function PortfolioReqoset()  {
             `
             document.getElementById("prtofolioAllItems").innerHTML += contente
         }
-        
+        toggleLoader(false)
+
     }).catch((error)=> {
+        toggleLoader(false)
+
         showScuse(`${error.message}` , "danger")
 
-    }).finally(()=> {
-        toggleLoader(false)
     })
 }

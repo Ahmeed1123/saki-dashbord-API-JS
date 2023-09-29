@@ -1,16 +1,18 @@
 
 const baceurl = `https://staging.saki-app.com`;
 SETUI()
-toggleLoader(false)
+toggleLoader(false);
 function loginbutclick()  {
     let numbarPhone = document.getElementById("Phone-Numbar-input").value;
 
     const params = {
         "phone" : numbarPhone
     }
-    toggleLoader(true)
+    toggleLoader(true);
+
     axios.post(`${baceurl}/api/login` , params)
     .then((response) =>  {
+        toggleLoader(false);
 
         showScuse(`${response.data.message}
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill text-success d-inline" viewBox="0 0 16 16">
@@ -23,22 +25,21 @@ function loginbutclick()  {
   
   
         modelInstescreatpost.hide()
-        toggleLoader(false)
         VerificationPhone(numbarPhone)
         
 
     }).catch((error)  =>  {
+        toggleLoader(false)
         showScuse(`${error.message}` , "danger")
 
-    }).finally(() =>  {
-        toggleLoader(false)
     })
 }
     function VerificationPhone( phoneNum) {
 
         let modalIntarsPass =  new bootstrap.Modal(`#verification-code-modal`)
         modalIntarsPass.show()
-        console.log(modalIntarsPass)
+        toggleLoader(false);
+
         let verificationCode  = document.getElementById("Phone-Verification-code-input").value;
         const params = {
             "phone": phoneNum , 
@@ -48,7 +49,6 @@ function loginbutclick()  {
             toggleLoader(true)
             axios.post(`${baceurl}/api/validate_otp` , params)
             .then((response) => {
- 
                 toggleLoader(false)
                 console.log(response)
                 localStorage.setItem("token" , response.data.data.token)
@@ -60,32 +60,29 @@ function loginbutclick()  {
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                 </svg>
                 ` )
+                closeReload(20)
+
             }).catch((error)  =>  {
+                toggleLoader(false)
                 showScuse(`${error.message}` , "danger")
         
-            }).finally(() =>  {
-                toggleLoader(false)
             })
+            
         })
 
     }
 
-function toggleLoader(shwo = true) {
-    if(shwo) {
-        setTimeout(()=> {
-            document.getElementById("loaderJs").style.opacity = "1"
-            setTimeout(()=> {
-                document.getElementById("loaderJs").style.visibility = "visible"
-            } ,1001)
-        } ,1001)
-
-    }else  {
-        document.getElementById("loaderJs").style.opacity = "0";
-        setTimeout(()=> {
-            document.getElementById("loaderJs").style.visibility = "hidden"
-        } ,1001)
+    function toggleLoader(show = true) {
+        const loader = document.getElementById("loaderJs");
+        
+        if (show === true) {
+            loader.style.opacity = "1";
+            loader.style.visibility = "visible";
+        } else if (show === false) {
+            loader.style.opacity = "0";
+            loader.style.visibility = "hidden";
+        }
     }
-}
 
 function showScuse(message, type = "success" , timeSec = 3) {
     const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
@@ -180,9 +177,12 @@ function Logout() {
 
     }
     toggleLoader(true)
+
         axios.post(`${baceurl}/api/logout` , params , {
             headers : headers
         } ).then((response) => {
+    toggleLoader(false)
+
             localStorage.removeItem("user")
             localStorage.removeItem("token")
             SETUI()
@@ -191,10 +191,10 @@ function Logout() {
             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
             </svg>
             `)
-            toggleLoader(false)
 
         }).catch((error)=> {
-            toggleLoader(false)
+    toggleLoader(false)
+
             showScuse(`${error.message}` , "danger")
 
         })
@@ -233,16 +233,17 @@ axios.post(`${baceurl}/api/dashboard` , params , {
     toggleLoader(false)
 
 }).catch((error)=> {
-    showScuse(`${error.message}` , "danger")
     toggleLoader(false)
+
+    showScuse(`${error.message}` , "danger")
 })
 
 }
 
 
 function ModalMarket(id ) {
-    toggleLoader(false)
-let post = JSON.parse(decodeURIComponent(id))
+
+    let post = JSON.parse(decodeURIComponent(id))
     let modalIntarsPass =  new bootstrap.Modal(`#modalMarket` , {})
     modalIntarsPass.show()
      document.getElementById("valueId").value = post.id;
@@ -255,9 +256,9 @@ let post = JSON.parse(decodeURIComponent(id))
     }
     document.getElementById("slectItem").innerHTML = ` <option onclick="NoneBtnclick()" selected>إختر مبلغ القسيمة</option>`;
 
-    // todos::
     let valdeeshen = document.getElementById("valueId").value;
     toggleLoader(true)
+
         axios.get(`${baceurl}/api/market/${valdeeshen}`  , {
         headers:headerse
     }).then((response) => {
@@ -269,14 +270,14 @@ for( poste of posts) {
 
     document.getElementById("slectItem").innerHTML += contente;
 }
-            toggleLoader(false)
+toggleLoader(false)
+
 
     }).catch((error)=> {
+
         console.log(error)
             showScuse(`${error.message}` , "danger")
 
-        }).finally(()=> {
-            toggleLoader(false)
         })
     
 }
@@ -284,7 +285,11 @@ function NoneBtnclick() {
     return  showScuse(`إختر مبلغ القسيمة` , "danger")
 }
 
-
+function closeReload( i = 5) {
+    setTimeout(function() {
+        location.reload();
+    }, `${i}00`);
+}
 
 
 function copyText(textElement) {

@@ -3,8 +3,11 @@ if (localStorage.getItem("token") != null) {
 }
 
 let selectedValue = null;
+
 let selectedValueOp = null;
-let selectedValueE = null
+
+let  selectedValueT = null;
+
 function reqosetProfile() {
     const headers = {
         "Accept": "application/json",
@@ -16,6 +19,8 @@ function reqosetProfile() {
     axios.get(`${baceurl}/api/profile`, {
         headers: headers
     }).then((response) => {
+        toggleLoader(false);
+
         let reqosProf = response.data.data;
         document.getElementById("NameProfile").innerHTML = reqosProf.name;
         document.getElementById("numbarIdentification").innerHTML = reqosProf.id_number;
@@ -27,27 +32,29 @@ function reqosetProfile() {
 
             selectedValue = null;
             selectedValueOp = null;
-            selectedValueE = null
-
             document.querySelectorAll('.input-radio input[type="radio"]').forEach((input) => {
                 if (input.value === reqosProf.material_status) {
                     input.checked = true;
                     selectedValue = input.value; 
+                   
                 } else {
                     input.checked = false;
                 }
-            });
-            const radioInputs = document.querySelectorAll('.input-radio  input[type="radio"]');
-
-                radioInputs.forEach((input) => {
-                input.addEventListener("click", function() {
-                 selectedValueE = this.value;
-             
+              
                 
             });
-        });
+            selectedValueT = selectedValue ;
             
-            
+    
+            const radioInputs = document.querySelectorAll('input[type="radio"]');
+
+            radioInputs.forEach((input) => {
+              input.addEventListener("click", function() {
+                 selectedValueT = this.value;
+                
+              });
+            }); 
+   
 
             const selectElement = document.getElementById('slectItemS');
             const targetValueOption = reqosProf.income_source;
@@ -64,7 +71,6 @@ function reqosetProfile() {
             });
 
             document.getElementById("incomeS").value = reqosProf.monthly_income;
-            toggleLoader(false);
             let modalIntarsPass = new bootstrap.Modal(`#profileDthilsSvg`, {});
             modalIntarsPass.show();
 
@@ -77,11 +83,11 @@ function reqosetProfile() {
             });
         });
     }).catch((error) => {
+        toggleLoader(false);
+
         console.log(error);
         showScuse(`${error.message}`, "danger");
-    }).finally(() => {
-        toggleLoader(false);
-    });
+    })
 }
 
 function rqosetSaveProfile() {
@@ -89,8 +95,8 @@ function rqosetSaveProfile() {
 
     formDat.append("email", document.getElementById("Emailprofile").value);
     formDat.append("name", document.getElementById("Name-Profile-input").value);
-    formDat.append("material_status", selectedValueE);
-    console.log(selectedValueE, selectedValueOp);
+    formDat.append("material_status", selectedValueT);
+    console.log(selectedValueT, selectedValueOp);
     formDat.append("monthly_income", document.getElementById("incomeS").value);
     formDat.append("income_source", selectedValueOp);
 
@@ -118,12 +124,12 @@ function rqosetSaveProfile() {
   
   
         modelInstescreatpost.hide()
+        closeReload(5);
 
     }).catch((error) => {
-        showScuse(`${error.message}`, "danger");
-    }).finally(() => {
         toggleLoader(false);
-    });
+        showScuse(`${error.message}`, "danger");
+    })
 }
  
  
