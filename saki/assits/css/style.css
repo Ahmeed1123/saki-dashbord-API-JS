@@ -89,6 +89,15 @@ div#liveAlertPlaceholder {
     bottom: 0;
     right: 10px;
 }
+@media screen and (max-width:750px) {
+    div#liveAlertPlaceholder {
+        width: 95%;
+        margin: auto;
+        bottom: auto;
+        top: 5%;
+        right: 10px;
+    }
+}
 .btn-tags {
     border-radius: 20px !important;
     font-size: 11px !important;
@@ -522,8 +531,10 @@ div#modalSearch.show .modal-dialog ,
 div#modalMarketTwoT.show .modal-dialog {
     max-width: 900px;
     direction: rtl;
+    max-height: 90%;
     width: 100%;
     margin: 20px auto 0px;
+    overflow:auto;
 }
 div#modalMarketTwoT.show .modal-dialog {
     max-width: 600px;
