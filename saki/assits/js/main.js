@@ -65,7 +65,7 @@ function loginbutclick()  {
             }).catch((error)  =>  {
                 toggleLoader(false)
                 showScuse(`${error.message}` , "danger")
-        
+          
             })
             
         })
@@ -193,10 +193,15 @@ function Logout() {
             `)
 
         }).catch((error)=> {
+           
     toggleLoader(false)
 
             showScuse(`${error.message}` , "danger")
 
+        }).finally(() => {
+            localStorage.removeItem("user")
+            localStorage.removeItem("token")
+            closeReload(20)
         })
 }
 function HomeReqoset() {
